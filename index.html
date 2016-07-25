@@ -1,0 +1,27 @@
+<!doctype html>
+
+<html>
+  <head>
+    <title>Riot todo</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="stylesheet" href="todo.css">
+
+  </head>
+
+  <body>
+    <app></app>
+
+    <script src="app.js" type="riot/tag"></script>
+    <script src="https://rawgit.com/riot/riot/master/riot%2Bcompiler.min.js"></script>
+
+    <script>
+    riot.mount('app', {
+      title: "Today's goals are...",
+      items: [
+      ]
+    })
+    </script>
+
+  </body>
+
+</html>
