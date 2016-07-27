@@ -1,5 +1,33 @@
-riot.tag2('app', '<todo></todo>', '', '', function(opts) {
+riot.tag2('app', '<nav-bar></nav-bar> <todo></todo>', '', '', function(opts) {
 });
+
+riot.tag2('nav-bar', '<a each="{links}" href="/{url}" class="{selected: parent.selectedId === url}"> {name} </a>', '', '', function(opts) {
+  let self = this
+
+  this.links = [
+    { name: "T", url: "" , tag: "today"},
+    { name: "M", url: "month", tag: "this-month"},
+    { name: "Y", url: "year" , tag: "this-year"}
+  ]
+
+  let r = () => {
+    riot.route.create()
+    riot.mount
+  }
+  r(this.highlightCurrent)
+
+  let plunkrRandomUrl = location.pathname.replace(new RegExp('/', 'g'), '')
+
+  this.highlightCurrent = function(id) {
+
+    if ( plunkrRandomUrl == id ) { id = '' }
+
+    self.selectedId = id
+    self.update()
+  }.bind(this)
+});
+
+
 
 riot.tag2('todo', '<h3>{opts.title}</h3> <unsplash></unsplash> <ul> <li each="{items.filter(whatShow)}"> <label class="{completed: done}"> <input type="checkbox" __checked="{done}" onclick="{parent.toggle}"> {title} </label> </li> </ul> <form onsubmit="{add}"> <input name="input" onkeyup="{edit}"> <button __disabled="{!text}">Add #{items.filter(whatShow).length + 1}</button> <button __disabled="{items.filter(onlyDone).length == 0}" onclick="{removeAllDone}"> X{items.filter(onlyDone).length} </button> </form>', '', '', function(opts) {
     this.items = opts.items

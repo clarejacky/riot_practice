@@ -4,7 +4,7 @@
   <head>
     <title>Riot Goal setting app</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <link rel="stylesheet" href="./node_modules/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./node_modules/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="todo.css">
 
   </head>
@@ -12,14 +12,15 @@
   <body>
     <app></app>
 
-    <script src="app.js" type="riot/tag"></script>
+    <script src="bundle.js" type="riot/tag"></script>
     <script src="https://rawgit.com/riot/riot/master/riot%2Bcompiler.min.js"></script>
 
     <script>
-    riot.mount('app', {
-      title: "Today's goals are...",
-      items: []
-    })
+    riot.compile(function() {
+       riot.route.base('/')
+       riot.mount('*')
+       riot.route.start(true)
+     })
     </script>
 
   </body>
