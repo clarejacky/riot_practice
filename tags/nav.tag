@@ -14,17 +14,13 @@
   ]
 
   let r = () => {
+    console.log(riot.route)
     riot.route.create()
-    riot.mount
+    riot.mount()
   }
   r(this.highlightCurrent)
 
-  let plunkrRandomUrl = location.pathname.replace(new RegExp('/', 'g'), '')
-
   highlightCurrent(id) {
-    // Plunker confuses routing initially
-    if ( plunkrRandomUrl == id ) { id = '' }
-
     self.selectedId = id
     self.update()
   }
