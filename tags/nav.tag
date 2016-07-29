@@ -7,22 +7,16 @@
 <script>
   let self = this
 
-  this.links = [
-    { name: "T", url: "" , tag: "today"},
-    { name: "M", url: "month", tag: "this-month"},
-    { name: "Y", url: "year" , tag: "this-year"}
+  self.data = [
+    { id: '', name: "T", url: "" , tag: "today"},
+    { id: '1', name: "M", url: "month", tag: "this-month"},
+    { id: '2', name: "Y", url: "year" , tag: "this-year"}
   ]
+  self.page = self.data[0]
 
-  let r = () => {
-    console.log(riot.route)
-    riot.route.create()
-    riot.mount()
-  }
-  r(this.highlightCurrent)
-
-  highlightCurrent(id) {
-    self.selectedId = id
-    self.update()
-  }
+  riot.route(function(id) {
+    let currentTag = self.data.filter(function(r) { return r.id == id })
+    riot.mount(currentTag.tag)
+  });
 </script>
 </nav-bar>
