@@ -1,5 +1,8 @@
 <todo>
   <h3>{ opts.title }</h3>
+  <femme></femme>
+  <wellbeing></wellbeing>
+  <about><about>
   <unsplash></unsplash>
   <ul>
     <li each={ items.filter(whatShow) }>
